@@ -16,7 +16,7 @@ def create_ambient(num_rooms, num_dirt):
 
 
 def print_ambient(ambient, pos, hide_dirt=False):
-    print("\nAmbient:")
+    print("\nAmbiente:")
 
     if hide_dirt:
         ambient_to_print = []
@@ -76,7 +76,7 @@ def manual_mode(ambient, vacuum_cleaner_pos):
 
     print_ambient(ambient, vacuum_cleaner_pos)
 
-    print("\nTodas as salas estão limpas!")
+    print("Todas as salas estão limpas!")
 
 
 def base_mode(ambient, vacuum_cleaner_pos):
@@ -105,17 +105,19 @@ def base_mode(ambient, vacuum_cleaner_pos):
         else:
             print("Aspirador se move para outra sala.")
 
-        if vacuum_cleaner_pos == num_rooms - 1:
-            move = 'esquerda'
-        elif vacuum_cleaner_pos == 0:
-            move = 'direita'
-
-        if move == 'direita':
-            vacuum_cleaner_pos += 1
+        if rooms_to_clear:
+            if vacuum_cleaner_pos == num_rooms - 1:
+                move = 'esquerda'
+            elif vacuum_cleaner_pos == 0:
+                move = 'direita'
+            if move == 'direita':
+                vacuum_cleaner_pos += 1
+            else:
+                vacuum_cleaner_pos -= 1
         else:
-            vacuum_cleaner_pos -= 1
+            print_ambient(ambient, vacuum_cleaner_pos)
 
-    print("\nTodas as salas estão limpas!")
+    print("Todas as salas estão limpas!")
 
 
 def omniscient_mode(ambient, vacuum_cleaner_pos):
@@ -123,8 +125,6 @@ def omniscient_mode(ambient, vacuum_cleaner_pos):
 
     while rooms_to_clear:
         print_ambient(ambient, vacuum_cleaner_pos)
-
-        print(f"Salas para limpar: {rooms_to_clear}")
 
         closest_room = min(rooms_to_clear, key=lambda room: abs(room - vacuum_cleaner_pos))
 
@@ -146,7 +146,7 @@ def omniscient_mode(ambient, vacuum_cleaner_pos):
             print("Aspirador se move para outra sala.")
 
     print_ambient(ambient, vacuum_cleaner_pos)
-    print("\nTodas as salas estão limpas!")
+    print("Todas as salas estão limpas!")
 
 
 def main():
@@ -160,18 +160,19 @@ def main():
     print("| 2 - Base                    |")
     print("| 3 - Onisciente              |")
     print("+-----------------------------+")
+    print()
 
     mode = int(input())
     if mode not in [1, 2, 3]:
         print("Modo inválido. Escolha entre 1, 2 ou 3.")
         return
 
-    num_rooms = int(input("Digite o número de salas (até 10): "))
+    num_rooms = int(input("\nDigite o número de salas (até 10): "))
     if num_rooms <= 0 or num_rooms > 10:
         print("Número de salas inválido. Deve ser de 1 a 10.")
         return
 
-    num_dirt = int(input("Digite o número de salas com sujeira: "))
+    num_dirt = int(input("\nDigite o número de salas com sujeira: "))
     if num_dirt < 0 or num_dirt > num_rooms:
         print("Número de sujeiras inválido. Deve ser de 0 a", num_rooms)
         return
