@@ -82,30 +82,26 @@ def manual_mode(ambient, vacuum_cleaner_pos):
 def base_mode(ambient, vacuum_cleaner_pos):
     num_rooms = len(ambient)
 
-    rooms_to_clear = 0
-
-    for index in range(len(ambient)):
-        if ambient[index] == '⛝':
-            rooms_to_clear += 1
+    rooms_to_clear = [1] * len(ambient)
 
     if vacuum_cleaner_pos >= num_rooms // 2:
         move = 'direita'
     else:
         move = 'esquerda'
 
-    while rooms_to_clear:
+    while rooms_to_clear.count(1) > 0:
         print_ambient(ambient, vacuum_cleaner_pos, hide_dirt=True)
 
-        print(f"Salas para limpar: {rooms_to_clear}")
         print(f"O aspirador está na sala {vacuum_cleaner_pos} e vai para a {move}.")
 
         if clear_room(ambient, vacuum_cleaner_pos):
             print("Aspirador limpa a sala.")
-            rooms_to_clear -= 1
         else:
             print("Aspirador se move para outra sala.")
 
-        if rooms_to_clear:
+        rooms_to_clear[vacuum_cleaner_pos] = 0
+
+        if rooms_to_clear.count(1) > 0:
             if vacuum_cleaner_pos == num_rooms - 1:
                 move = 'esquerda'
             elif vacuum_cleaner_pos == 0:
