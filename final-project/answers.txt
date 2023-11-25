@@ -1,0 +1,29 @@
+1- Porque foram escolhidos os parâmetros 1 e 1000.0, para KNN e Ridge Regression, respectivamente:
+
+O melhor parâmetro foi encontrado através de um algoritmo de Pesquisa em Grade (Grid Search).
+Feita uma busca sistemática em um espaço de hiperparâmetros definido previamente.
+Identificado a combinação que otimiza o desempenho do modelo.
+
+K-Nearest Neighbors (KNN) | Parâmetro escolhido: Número de vizinhos (n_neighbors).
+Encontrado o melhor equilíbrio entre viés e variância. O valor ideal dependerá da complexidade do conjunto de dados.
+
+Ridge Regression | Parâmetro escolhido: Termo de regularização (alpha).
+Controlada a penalização nos coeficientes. Encontrado o parâmetro que otimiza o equilíbrio entre ajuste aos dados de treino e generalização para novos dados.
+
+2- Porque o KNN com o parâmetro 1 trouxe os melhores resultados:
+
+Através da métrica de avaliação da acurácia dos modelos para avaliar o desempenho dos mesmo,
+foi possível encontrar uma medida geral de quão bem os modelos estão classificando os dígitos.
+Comparando as acurácias obtidas pelos modelos KNN e Ridge Regression foi encontrado que
+o modelo que apresenta a acurácia mais alta foi o KNN, indicando que ele faz previsões mais precisas em comparação ao Ridge Regression.
+
+
+Outros fatores que fazem com que o modelo usando o algoritmo KNN se saia melhor em reconhecer dígitos:
+- KNN tende a funcionar bem em conjuntos de dados onde instâncias semelhantes têm rótulos semelhantes.
+Pode ser eficaz em problemas de classificação com estrutura local clara.
+- Por outro lado, Ridge Regression apenas é útil se houver relações lineares significativas entre os recursos e os rótulos.
+Pode ser mais robusto em relação a outliers.
+- Para um conjunto de dados de dígitos, um modelo de classificação como K-Nearest Neighbours (KNN) é geralmente mais adequado
+do que Ridge Regression. KNN é eficaz para tarefas de classificação onde os pontos de dados são atribuídos a categorias
+tornando-o adequado para tarefas como reconhecimento de dígitos. O Ridge Regression, por outro lado, é projetada para prever um
+resultado contínuo e pode não funcionar bem em cenários onde a variável alvo é categórica, como na classificação de dígitos.
